@@ -1,0 +1,20 @@
+<app-btn></app-btn>
+<div class="row">
+    <div class="col-12 text-right">
+        <button class="btn btn-color text-white" routerLink="addUser">Add User</button>
+    </div>
+</div>
+
+
+ <div class="col-md-4">
+    <ul class="list-group" *ngIf="usersArr.length>0; else noUser">
+        <li class="list-group-item" *ngFor="let user of usersArr" [routerLink]="user.userId">
+            {{user.userName|titlecase}}
+        </li>
+    </ul>
+</div>
+<ng-template #noUser>
+    <strong class="alert alert-info">User not added yet !!!</strong>
+</ng-template>
+
+

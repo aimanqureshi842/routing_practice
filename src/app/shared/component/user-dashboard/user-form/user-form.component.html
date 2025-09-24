@@ -1,0 +1,40 @@
+
+<app-btn></app-btn>
+<h2 class="text-center">
+    {{isInEdit? 'Update User':'Add User'}}
+</h2>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="userForm" (ngSubmit)="userFormSub()">
+                    <div class="form-group">
+                        <label for="userName">User Name<sup>*</sup></label>
+                        <input type="text" id="userName" formControlName="userName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">User Role <sup>*</sup></label>
+                        <select id="userRole" formControlName="userRole" class="form-control">
+                            <option value="admin">Admin</option>
+                            <option value="candidate">Candidate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description<sup>*</sup>
+                        </label>
+                        <textarea rows="4" formControlName="description" id="description"
+                            class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="text" formControlName="image" id="image" class="form-control">
+                    </div>
+                    <button [disabled]="userForm.invalid" *ngIf="!isInEdit"  type="submit" class="btn btn-primary">Submit</button>
+                    <button  type="button" class="btn btn-primary" *ngIf="isInEdit" (click)="updateObj()">Update</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<app-btn></app-btn>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card" *ngIf="userInfo; else noUser">
+            <div class="card-body bg-color">
+                <div class="row text-white">
+                    <div class="col-md-8">
+                        <h4>{{userInfo.userName|titlecase}}</h4>
+                        <strong class="text-dark"> UserRole : </strong><span>{{userInfo.userRole|titlecase}}</span>
+                        <p> <strong class="text-dark">Description : </strong>{{userInfo.description}}</p>
+
+                    </div>
+                    <div class="col-md-4"> <img [src]="userInfo.image" alt="userImg">
+                    </div>
+
+                </div>
+                <div >
+                    <button class="btn btn-sm btn-primary mr-3 " routerLink="edit">Edit</button>
+                    <button class="btn btn-sm btn-danger" (click)="removeUser()">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noUser>
+    <strong class="alert alert-info">
+        No user added yet!!!
+    </strong>
+</ng-template>
