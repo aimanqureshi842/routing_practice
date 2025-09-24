@@ -31,7 +31,7 @@
                         <input type="text" formControlName="image" id="image" class="form-control">
                     </div>
                     <button [disabled]="userForm.invalid" *ngIf="!isInEdit"  type="submit" class="btn btn-primary">Submit</button>
-                    <button  type="button" class="btn btn-primary" *ngIf="isInEdit" (click)="updateObj()">Update</button>
+                    <button [disabled]="userForm.invalid" type="button" class="btn btn-primary" *ngIf="isInEdit" (click)="updateObj()">Update</button>
 
                 </form>
             </div>
