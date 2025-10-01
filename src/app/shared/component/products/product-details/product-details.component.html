@@ -1,0 +1,36 @@
+<app-btn></app-btn>
+<div class="row">
+    <div class="col-12">
+        <div class="card" *ngIf="productInfo;else noProduct">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img [src]="productInfo.image" [alt]="productInfo.productName">
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="heading mb-0">{{productInfo.productName}}</h2>
+                        <mat-list>
+                            <mat-list-item class="mb-0" *ngFor="let product of productInfo.productDescription">
+                                $ {{product|titlecase}}
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div class="col-md-3">
+                        <h1 class="m-0">{{productInfo.price|currency:'INR':'symbol-narrow'}}</h1>
+                        <span><del
+                                class="mr-3 ">{{productInfo.price+(productInfo.price*productInfo.discount/100)|currency:'INR'}}</del></span>
+                        <strong class="color">{{productInfo.discount}} % off</strong>
+                        <p>{{productInfo.exchangeOffer}}</p>
+                    </div>
+                </div>
+                <br>
+                    <button mat-raised-button color="primary" class="mr-3" routerLink="edit">Edit</button>
+                    <button mat-raised-button color="warn" (click)="removePro()">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProduct>
+<strong class="alert alert-info">No product added yet!!!</strong>
+</ng-template>

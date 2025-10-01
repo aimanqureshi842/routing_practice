@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BtnComponent } from './btn/btn.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { ProductDetailsComponent } from './shared/component/products/product-details/product-details.component';
+import { ProductFormComponent } from './shared/component/products/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MaterialModule } from './material/material.module';
     FairsComponent,
     UserDetailsComponent,
     UserFormComponent,
-    BtnComponent
+    BtnComponent,
+    ProductDetailsComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

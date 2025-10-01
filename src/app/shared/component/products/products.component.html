@@ -1,1 +1,31 @@
-<p>products works!</p>
+<app-btn></app-btn>
+<div class="row">
+    <div class="col-12 text-right" routerLink="addProduct">
+        <button mat-raised-button color="primary">Add Product</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4" *ngIf="productsArr.length>0 ; else noprod">
+        <mat-list class="list-group">
+            <mat-list-item class="list-group-item" [routerLink]="product.productId"
+             *ngFor="let product of productsArr">
+                {{product.productName}}
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>
+<ng-template #noprod>
+<strong class="alert alert-info">No product added yet!!!</strong>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+

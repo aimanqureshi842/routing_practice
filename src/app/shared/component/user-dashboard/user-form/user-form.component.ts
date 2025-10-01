@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iuser } from 'src/app/shared/models/userInterface';
+import { SnacbarService } from 'src/app/shared/service/snacbar.service';
 import { UserService } from 'src/app/shared/service/user.service';
 import { UuidService } from 'src/app/shared/service/uuid.service';
 
@@ -18,7 +19,8 @@ export class UserFormComponent implements OnInit {
   constructor(private _userService: UserService,
     private _uuidService: UuidService,
     private _router: Router,
-    private _routes: ActivatedRoute
+    private _routes: ActivatedRoute,
+    private _SnackBarService:SnacbarService
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class UserFormComponent implements OnInit {
       // userObj.userId=this._uuidService.uuid()
       this.userForm.reset()
       this._userService.newUserObj(userObj);
+      this._SnackBarService.openSnackBar(`User "${userObj.userName}" added successfully!!!`)
       this._router.navigate(['users'])
 
     }
@@ -69,6 +72,7 @@ export class UserFormComponent implements OnInit {
     if (this.userForm.valid) {
       let updatedObj = { ...this.userForm.value, userId: this.userId }
       this._userService.updatedUser(updatedObj);
+      this._SnackBarService.openSnackBar(`User "${updatedObj.userName}" updated successfully!!!`)
       this.userForm.reset();
       this._router.navigate(['users'])
     }
