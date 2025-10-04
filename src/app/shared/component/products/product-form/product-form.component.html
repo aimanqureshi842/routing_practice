@@ -2,65 +2,71 @@
 <h1 class="text-center">{{isInEditMode? 'Update Product' :'Add Product'}}</h1>
 <div class="row">
     <div class="col-md-6 offset-md-3">
-                <form [formGroup]="productForm" (ngSubmit)="addProduct()">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Product Name</mat-label>
-                        <input type="text" matInput placeholder="Product Name" formControlName="productName">
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Poduct Status</mat-label>
-                        <mat-select formControlName="productStatus">
-                            <mat-option value="delivered">Delivered</mat-option>
-                            <mat-option value="in-progress">In-progress</mat-option>
-                            <mat-option value="dispatched">Dispatched</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Can Return</mat-label>
-                        <mat-select formControlName="canReturn">
-                            <mat-option [value]="1">Yes</mat-option>
-                            <mat-option [value]="0">No</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <h4>Product Description</h4>
-                        <div formArrayName="productDescription">
-                            <div class="row" *ngFor="let prodDes of productsDesArr.controls ; let i=index">
-                                <div class="col-10">
-                                    <mat-form-field appearance="fill">
-                                <input type="text" matInput class="form-control" [formControlName]="i">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-2">
-                                <button mat-raised-button color="primary" type="button" *ngIf="i>0" (click)="removeDes(i)">Remove</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <button mat-raised-button color="primary" type="button" (click)="addDesc()" [disabled]="productsDesArr.invalid">Add Description</button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Price</mat-label>
-                        <input type="text" matInput formControlName="price">
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Discount</mat-label>
-                        <mat-select formControlName="discount">
-                            <mat-option [value]="dis" *ngFor="let dis of discountArr">{{dis}} %</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Image</mat-label>
-                        <input type="text" matInput formControlName="image">
-                    </mat-form-field>
-                    <button [disabled]="productForm.invalid" mat-raised-button color="primary" type="submit"
-                        *ngIf="!isInEditMode">Add Product</button>
-                    <button mat-raised-button color="primary" type="button" *ngIf="isInEditMode"
-                        (click)="updatedProd()">Update Product</button>
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+            <mat-form-field appearance="fill">
+                <mat-label>Product Name</mat-label>
+                <input type="text" matInput placeholder="Product Name" formControlName="productName">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Poduct Status</mat-label>
+                <mat-select formControlName="productStatus">
+                    <mat-option value="delivered">Delivered</mat-option>
+                    <mat-option value="in-progress">In-progress</mat-option>
+                    <mat-option value="dispatched">Dispatched</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Can Return</mat-label>
+                <mat-select formControlName="canReturn">
+                    <mat-option [value]="1">Yes</mat-option>
+                    <mat-option [value]="0">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <h4>Product Description</h4>
+            <div formArrayName="productDescription">
+                <div class="row" *ngFor="let prodDes of productsDesArr.controls ; let i=index">
+                    <div class="col-10">
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput class="form-control" [formControlName]="i">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-2">
+                        <button mat-raised-button color="primary" type="button" *ngIf="i>0"
+                            (click)="removeDes(i)">Remove</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button mat-raised-button color="primary" type="button" (click)="addDesc()"
+                            [disabled]="productsDesArr.invalid">Add Description</button>
 
-                </form>
+                    </div>
+                </div>
             </div>
-        </div>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input type="text" matInput formControlName="price">
+            </mat-form-field>
+            <strong class="text-danger" *ngIf="f['price'].dirty && f['price'].hasError('invalidPrice')">
+                {{f['price'].errors?.['invalidPrice']}}
+            </strong>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Discount</mat-label>
+                <mat-select formControlName="discount">
+                    <mat-option [value]="dis" *ngFor="let dis of discountArr">{{dis}} %</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Image</mat-label>
+                <input type="text" matInput formControlName="image">
+            </mat-form-field>
+            <button [disabled]="productForm.invalid" mat-raised-button color="primary" type="submit"
+                *ngIf="!isInEditMode">Add Product</button>
+            <button mat-raised-button color="primary" type="button" *ngIf="isInEditMode" (click)="updatedProd()">Update
+                Product</button>
+
+        </form>
+    </div>
+</div>

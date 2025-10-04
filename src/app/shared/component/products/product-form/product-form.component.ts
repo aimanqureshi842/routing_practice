@@ -5,6 +5,7 @@ import { Iproduct } from 'src/app/shared/models/productInterface';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { SnacbarService } from 'src/app/shared/service/snacbar.service';
 import { UuidService } from 'src/app/shared/service/uuid.service';
+import { PriceValidator } from 'src/app/shared/validators/onlydigitsValidator';
 
 @Component({
   selector: 'app-product-form',
@@ -37,7 +38,7 @@ this.productForm=new FormGroup({
   productDescription:new FormArray([
     new FormControl(null,Validators.required),
   ]),
-  price:new FormControl(null,Validators.required),
+  price:new FormControl(null,[Validators.required,PriceValidator.validPrice]),
   discount:new FormControl(null),
   exchangeOffer:new FormControl(null),
   image:new FormControl(null,Validators.required)
@@ -68,6 +69,7 @@ return this.productForm.controls
 get productsDesArr(){
   return this.f['productDescription'] as FormArray
 }
+
 addProduct(){
 
   if(this.productForm.valid){
